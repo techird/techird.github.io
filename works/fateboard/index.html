@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>缘分棋</title>
+    <link rel="stylesheet" href="css/fateboard.css">
+    <script type="text/javascript" src="js/tangram.js"></script>
+    <script type="text/javascript" src="js/fateboard.js"></script>
+    <script type="text/javascript" src="js/maps.js"></script>
+    <script type="text/javascript" src="js/ai.js"></script>
+    <script type="text/javascript" src="js/platform.js"></script>
+</head>
+<body>
+    <div id="intro">
+        <p>太扯淡（T = Techird）和余小鱼（S = Sue）登上了一座神奇的城堡，这个城堡的地形很诡异，下面是地图。这是你从上往下看的时候，T 和 S 的位置。一开始，他们都在城堡的 100 层，然后他们需要找到对方，要怎么去探索呢？走步规则如下</p>
+        <ul>
+            <li>往前走一步，如果不是运算，都是往下一层</li>
+            <li>如果是运算，那么回沿着运算达到下一个格子，然后重新判定</li>
+            <li>经过一个运算，你到达运算后得到的楼层，其中“/2”会忽略小数部分。比如在 7 楼，经过“/2”，就到了 3 楼。</li>
+        </ul>
+        <p>Techird 设计了一个贪心走法，让两个人每次去选择最靠近对方值的下一步。这个走法有时候能走出结果，有时候却要很久。</p>
+        <p>有没有办法，让他们在最少步之内相遇呢，如果地图改变，你的算法也应该有效才好，因为他们可能想换个地方探险。</p>
+    </div>
+    <div id="board"></div>
+    <div id="info"></div>
+    <div id="ctrl">
+    	<h1>Fateboard</h1>
+        <div class="setting-section">
+            <h2>游戏设置</h2>
+            <label for="map-usage">使用地图</label>
+            <select id="map-usage" name="map-usage"></select>
+            <label for="map-data">地图数据</label>
+            <textarea id="map-data"></textarea>
+            <button id="btn-apply-map">载入地图</button>
+            <a href="create.html" target="_black">地图编辑器</a>
+            <label for="step-speed">步时</label>
+            <select id="step-speed" name="step-speed">                
+                <option value="0">0 ms</option>
+                <option value="1">1 ms</option>
+                <option value="10">10 ms</option>
+                <option value="50">50 ms</option>
+                <option value="100" selected>100 ms</option>
+                <option value="200">200 ms</option>
+                <option value="500">500 ms</option>
+                <option value="1000">1 s</option>
+                <option value="3000">3 s</option>
+                <option value="5000">5 s</option>
+            </select>
+        </div>
+    	<div class="setting-section">
+    		<h2>Techird 设置</h2>
+    		<label for="player0-ai">使用AI</label>
+    		<select id="player0-ai" name="player0-ai"></select>
+    		<label for="player0-ai-code">AI 代码</label>
+    		<textarea id="player0-ai-code"></textarea>
+    	</div>
+    	<div class="setting-section">
+    		<h2>Sue 设置</h2>
+			<label for="player1-ai">使用AI</label>
+    		<select id="player1-ai" name="player2-ai"></select>    		
+    		<label for="player1-ai-code">AI 代码</label>
+    		<textarea id="player1-ai-code"></textarea>
+		</div>
+    	<div class="actions">
+    		<button id="btn-run">运行</button>
+    		<button id="btn-stop" disabled="disabled">停止</button>
+    	</div>
+        <div class="author">Powered By <a href="http://techird.com">techird</a>. Fork me on <a href="https://github.com/techird/Fateboard">github.</a></div>
+    </div>
+</body>
+</html>

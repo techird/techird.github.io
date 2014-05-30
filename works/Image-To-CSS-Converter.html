@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="powerby" value="techird">
+	<title>Image To CSS Converter</title>
+	<style type="text/css">
+		body{
+			font-family: Arial;
+		}
+		#file-drop { 
+			display: table-cell;
+			width: 80px; 
+			height: 80px;
+			padding: 10px;
+			vertical-align: middle;
+			border: 1px solid black; 
+			text-align: center;
+		}
+		#download {
+			display: none;
+		}
+		em {
+			font-weight: bold;
+			color: red;
+			text-transform: uppercase;
+		}
+	</style>
+</head>
+<body>
+	<h1>Image To CSS Converter</h1>
+	<p>INTRODUCE: This little script can transfer an image file to an html that uses css to render a dom to the image inputed. I use the FileAPI / HTML Canvas which <em>only mordern browsers like chrome supports</em>. Hope you will enjoy it!</p>
+	<p>DECLARE: This script was powered by <a href="http://techird.com">techird</a>. You can use it for free but please keep the author's name on it.</p>
+	<hr>
+	<p><label for="file-select">Select an image: </label><input id="file-select" type="file" /></p>
+	<p>or</p>
+	<div id="file-drop">Drop image file here
+		<img id="preview" />
+	</div>
+	<hr>
+	<pre id="result"></pre>
+</body>
+<script type="text/javascript">
+
+// A very simple string template
+// usage： tpl('x: %1, y:%2').render([1, 2]);
+	function tpl( str ) {
+		return {
+			render: function( args ){
+				return str.replace(/%\d/g, function(d){
+					return args[d.substr(1) * 1];
+				});
+			}
+		}
+	}
+
+// for global usage
+	var canvas, ctx;
+
+	canvas = document.createElement('canvas');
+	canvas.width = canvas.height = 10000;	// to make an enough drawing area
+	ctx = canvas.getContext('2d');
+
+// read the file after user selects it
+	function onFileSelect( e ) {
+		e.stopPropagation();
+		e.preventDefault();
+		var container = e.dataTransfer || e.target;	//选择文件和拖放的差别
+		var file = container.files[0];
+		readFile(file);
+	}
+
+// ignore non-image files
+	function readFile( file ) {
+		if(!/image/.test(file.type)) {
+			alert('That\'s not an image file!');
+			return;
+		}
+		var reader = new FileReader();
+		reader.onload = onFileReaded;
+		reader.readAsDataURL(file);
+	}
+
+// render to the img tag
+	function onFileReaded( e ) {
+		var img = document.getElementById('preview');
+		img.onload = onImageRendered;
+		img.src = e.target.result;
+	}
+
+// when the image was rendered, draw it on the canvas, as so i can get the pixel data
+// once i get the data and transfer to an 'box-shadow' property value:
+// 1. write it on the page
+// 2. build the download button
+	function onImageRendered( e ) {
+		var img = e.target;
+		if (img.width * img.height < 200 * 200 
+			|| confirm('图像大小超过 200 x 200 可能导致生成CSS较大，太大了甚至让浏览器崩溃，是否继续？')){
+			ctx.drawImage(img, 0, 0);
+			var imageData = ctx.getImageData(0, 0, img.width, img.height);
+			var value = convertToBoxShadowValue(imageData);
+			writeCssProperty(value);
+			buildDownloadLink(value);
+		}
+	}
+
+// convert the image data to the 'box-shadow' property value
+	function convertToBoxShadowValue( imageData ) {
+		var pixelArray = imageData.data,
+			w = imageData.width,
+			h = imageData.height;
+
+		// This function render a pixel's color to a cell of box-shadow
+		// The pixelArray stores the images's pixel's data. Each pixel takes 4 unit of the
+		// array which values the R,G,B,A of the pixel, take the number from 0 to 255.
+		// See also: https://developer.mozilla.org/en-US/docs/HTML/Canvas/Pixel_manipulation_with_canvas
+		function convertPixel( x, y ) {
+			var start = (y * w + x) * 4;	//the start pos of current pixel's RGBA value.
+			var rgba = [];
+			rgba.push(pixelArray[start++]);
+			rgba.push(pixelArray[start++]);
+			rgba.push(pixelArray[start++]);
+			rgba.push(pixelArray[start++]);
+			rgba.unshift(y);
+			rgba.unshift(x);
+			return tpl('\t%0px %1px 0 1px rgba(%2, %3, %4, %5)').render(rgba);
+		}
+
+		// Now just put the values together
+		var x, y, resultArray = [];
+		for(x = 0; x < w; x++)
+		for(y = 0; y < h; y++){
+			resultArray.push(convertPixel(x, y));
+		}
+		return resultArray.join(',\n');
+	}
+
+	function writeCssProperty(value) {
+		var pre = document.getElementById('result');
+		pre.innerHTML = 'box-shadow:\n' + value + ';';
+	}
+
+	function buildDownloadLink(value) {
+		var template = tpl(
+			'<div id="css-image"></div>' +
+			'<style>' +
+				'#css-image {' +
+					'width: 0;' +
+					'height: 0;' +
+					'box-shadow: \n%0;' +
+				'}' +
+			'</style>'
+		);
+		var html = template.render([value]);
+		var btn = document.getElementById('download-button');
+		if (!btn) {
+			btn = document.createElement('button');
+			btn.id = 'download-button';
+			btn.innerHTML = '下载为HTML';
+			var pre = document.getElementById('result');
+			pre.parentNode.insertBefore(btn, pre);
+		}
+
+		// This download was really a freak...
+		btn.onclick = function(){
+			var bb = new (window.BlobBuilder || window.WebKitBlobBuilder)();
+			bb.append(html);
+			var blob = bb.getBlob('application/octect-stream');
+			var saveas = document.createElement("iframe");
+			saveas.style.display = "none";
+			saveas.src = window.webkitURL.createObjectURL(blob);
+			document.body.appendChild(saveas);
+			delete bb;
+			delete blob;
+		}
+	}
+
+	function onDragOver(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		e.dataTransfer.dropEffect = 'copy';
+	}
+
+// Bind some events
+	var fileDrop = document.getElementById('file-drop');
+	fileDrop.addEventListener('dragover', onDragOver, false);
+	fileDrop.addEventListener('drop', onFileSelect, false);
+
+	var fileSelect = document.getElementById('file-select');
+	fileSelect.addEventListener('change', onFileSelect);
+</script>
+</html>

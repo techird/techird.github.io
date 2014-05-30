@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>尤抱琵琶半遮脸</title>
+    <style type="text/css">
+        body{
+            background-color: white;
+        }
+        .cell {
+            display: block;
+            width: 15px;
+            height: 15px;
+            line-height: 15px;
+            text-align: center;
+            font-size: 12px;
+            position: fixed;
+            cursor: pointer;
+            color: #FFF;
+            -webkit-transition: all ease 1s;
+            -moz-transition: all ease 1s;
+            -ms-transition: all ease 1s;
+            transition: all ease 1s;
+            z-index: 0;
+        }
+        .cell:hover {
+            color: white;
+            background-color: #7C03FF;
+            -webkit-transition: all ease 0;
+            -moz-transition: all ease 0;
+            -ms-transition: all ease 0;
+            transition: all ease 0;
+            width: 50px;
+            height: 50px;
+            z-index: 100;
+            line-height: 50px;
+            font-size: 25px;
+            margin-left: -17.5px;
+            margin-top: -17.5px;
+            box-shadow: 0 0 5px rgba(0,0,0,.5)
+        }
+        .cell:active {            
+            -webkit-transition: all ease-in .05s;
+            -moz-transition: all ease-in .05s;
+            -ms-transition: all ease-in .05s;
+            transition: all ease-in .05s;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            font-size: 23px;
+            background-color: #A557FA;
+            margin-left: -15px;
+            margin-top: -15px;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    var width = 80;
+    var height = 48;
+    var size = 15;
+    var word = "犹抱琵琶半遮面";//XHU1MjE4XHU1YmI2XHU5ZTIzXHU3MjMxXHU0ZjU5XHU2ZDc3XHU3NDM0;
+    for ( var i = 1; i <= height; i++ )
+    for ( var j = 1; j <= width;  j++ ){
+        document.write('<div class="cell" value="' + (i + j) +'" style="top: ' + (i * size) + 'px; left: ' + (j * size) + 'px;">' +
+            word[(i+j)%word.length] +'</div>');
+    }
+    var state_map1 = [
+        [1,0,0,0,0,0,0], 
+        [1,2,0,0,0,0,0], 
+        [0,2,3,0,0,0,0], 
+        [0,0,3,4,0,0,0], 
+        [0,0,0,4,5,0,0], 
+        [0,0,0,0,5,6,0],
+        [0,0,0,0,0,6,7],
+        [0,0,0,0,0,0,0]
+    ];
+    var state_map2 = [
+        [0,0,0,0,1,0,0],
+        [0,0,0,0,1,2,0],
+        [0,0,0,0,0,2,3],
+        [0,0,0,4,0,0,3],
+        [5,0,0,4,0,0,0],
+        [5,6,0,0,0,0,0],
+        [0,6,7,0,0,0,0],
+        [0,0,0,0,0,0,0]
+    ];
+    var state1 = 0, state2 = 0;
+    var s1 = "你是有多笨才能现在才发现！！！";
+    var s2 = "\u77ee\u6cb9\u3002\u3002\u3002\u77e5\u9053\u5566\u3002\u3002\u3002";
+    document.body.onclick = function (e) {
+        var pos = e.target.getAttribute('value') % word.length;
+        state1 = state_map1[state1][pos];
+        state2 = state_map2[state2][pos];
+        console.log({state1: state1, state2: state2});
+        if(state1 === word.length) {
+            alert(s1);
+            state1 = 0;
+        }
+        if(state2 === word.length) {
+            alert(s2);
+            state2 = 0;
+        }
+    }
+</script>
+</html>

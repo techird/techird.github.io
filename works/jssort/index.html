@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>性能测试引擎 By Techird</title>
+
+	<!--引擎核心库-->
+	<script type="text/javascript" src="Engine.js"></script>
+	<link rel="stylesheet" type="text/css" href="Style.css" />
+</head>
+<body>
+	<fieldset>
+		<legend>状态</legend>
+		<div id="status"></div>
+	</fieldset>
+	<fieldset>
+		<legend>测试列表</legend>
+		<div id="case-display">
+			<button id="btnRunAll">全部运行</button>
+			<button id="btnRunSelected">运行选中部分</button>
+			<button id="btnCancel" disabled>中断</button>
+			<table>
+				<tr>
+					<th>选中</th>
+					<th>ID</th>
+					<th>用例说明</th>
+					<th>循环次数</th>
+					<th>进度</th>
+					<th>用时</th>
+					<th>速度</th>
+				</tr>
+			</table>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>测试区</legend>
+		<!--此处可以供测试方法中操作-->
+		<div id="test-area">
+		</div>
+	</fieldset>
+
+</body>
+
+<!--配套本页面的UI脚本，请放在body之后-->
+<script type="text/javascript" src="Test.UI.js"></script>
+
+<!--这里放入测试脚本-->
+<script type="text/javascript">
+	addCaseById("SystemSort");
+	addCaseById("MinSort");
+</script>
+
+</html>

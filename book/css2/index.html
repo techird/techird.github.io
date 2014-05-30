@@ -1,0 +1,76 @@
+<h2>概要</h2>
+
+<p>本规范定义了叠层样式表（CSS）的 2.1 版本。CSS 2.1 是一个允许用户将样式应用到结构化文档（如 HTML 和 XML）的样式定义语言。分离文档的表现和内容，CSS 2.1 简化了Web开发者的工作以及让Web站点更容易维护。</p>
+
+<p>CSS 2.1 是在 CSS 2 的基础上建立的（CSS 2 在 CSS 1 的基础上建立）。它支持开发人员为不同的媒体类型的设备去裁剪其样式表，包括浏览器、听觉设备、打印机、盲文设备、手持设备等。同时，它还支持内容定位、表格布局、国际化功能以及一些和 UI 相关的属性。</p>
+
+<p>CSS 2.1 修正了 CSS2 中的一些错误（最重要的是重新定义了绝对定位元素的 width 和 height、增加了 HTML 的 style 属性的重要性、以及 clip 属性的一个新的计算方法），同时增加了一些呼声最高，并且在很多已经投入了使用的功能。但是 CSS 2.1 大部分还是一个 CSS 使用的“快照”：它包含了所有大家都推荐的功能。</p>
+
+<p>CSS 2.1 从 CSS 2 中继承而来，并且会替换掉 CSS 2 。CSS 2 当中的一部分被保留了下来，一部分被修改了，还有一部分被删除了。被删除的某些功能，可能会在 CSS 3 的规范中加上。将来所说的规范，将默认指 CSS 2.1 （除非需要一些在 CSS 2.1 中被删除掉的 CSS 2 的功能，或者在 CSS 3 模块中参考这些功能）</p>
+
+<h2>文档结构</h2>
+
+<p><em>本节仅描述本文档发布时的状态。其他文档规定的内容可能会与本文略有出入。你可以在 <a href="http://www.w3.org/TR/">www.w3.org/TR</a> 中得到 W3C 最新发布的文档的列表</em> </p>
+
+<p>W3C 成员、软件工程师以及其他的 W3C 组织以及一些感兴趣的组织已经审阅过本文档，并且已经被 W3C 组织推荐为标准。这是一份相对稳定的文档，可以作为一些材料引用在其他文章里面。W3C 将文档推行为标准是希望能够引起本规范的注意力，并且让其广泛的使用。这将让 Web 的功能更丰富、让 Web 的交互更加流畅。</p>
+
+<p>您可以向公共邮箱 <a href="mainto://www-style@w3.org">www-style@w3.org</a> 发送邮件讨论关于本规范的问题。发送邮件时，请将“CSS21”的字样写在邮件主题上，如：“[CSS21] <em>...主题...</em>”</p>
+
+<p>本文档由 <a href="http://www.w3.org/Style/CSS/members">CSS 工作组</a>（<a href="http://www.w3.org/Style/">Style Activity</a>的一部分） 编写。由 <a href="http://techird.com">Techird</a> 完成翻译工作。</p>
+
+<p>专利说明（不翻译）：<em>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a rel="disclosure" href="http://www.w3.org/2004/01/pp-impl/32061/status">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the
+individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</em></p>
+
+<p>编写组已经创建了一个<a href="http://www.w3.org/Style/CSS/Test/">测试包</a>以及一份<a href="http://www.w3.org/Style/CSS/Test/CSS2.1/20110323/reports/">实现报告</a></p>
+
+从上次的草稿以及预发布版本之后所做的修改均列在<a href="http://www.w3.org/TR/2011/REC-CSS2-20110607/changes.html">附录C</a>中。
+
+<h2>快速索引</h2>
+<ul>
+  <li><a href="about.html">
+    1. 关于 CSS 2.1 规范</a></li>
+  <li><a href="intro.html">
+    2. CSS 2.1 介绍</a></li>
+  <li><a href="conform.html">
+    3. 确认：要求和建议</a></li>
+  <li><a href="syndata.html">
+    4. 符号以及基本数据类型</a></li>
+  <li><a href="selector.html">
+    5. 选择器</a></li>
+  <li><a href="cascade.html">
+    6. 属性的分配、叠层以及继承</a></li>
+  <li><a href="media">
+    7. 媒体类型</a></li>
+  <li><a href="box.html">
+    8. 盒装模型</a></li>
+  <li><a href="visuren.html">
+    9. 可视格式化模型</a></li>
+  <li><a href="visudet.html">
+    10. 可是格式化模型细节</a></li>
+  <li><a href="visufx.html">
+    11. 可视化效果</a></li>
+  <li><a href="generate.html">
+    12. 生成内容，自动编号以及列表</a></li>
+  <li><a href="page.html">
+    13. 页面媒体</a></li>
+  <li><a href="colors.html">
+    14. 颜色</a></li>
+  <li><a href="fonts.html">
+    15. 字体</a></li>
+  <li><a href="text.html">
+    16. 文本</a></li>
+  <li><a href="tables.html">
+    17. 表格</a></li>
+  <li><a href="ui">
+    18. 交互</a></li>
+  <li><a href="aural.html">附录 A. 听觉样式表</a></li>
+  <li><a href="refs">附录 B. 参考文献</a></li>
+  <li><a href="changes">附录 C. 修改内容</a></li>
+  <li><a href="samples">附录 D. HTML 4 默认样式表</a></li>
+  <li><a href="zindex">附录 E. z-index 详细说明</a></li>
+  <li><a href="propidx">附录 F. 属性索引</a></li>
+  <li><a href="grammar">附录 G. CSS 2.1 语法</a></li>
+  <li><a href="index">附录 I. 索引</a></li>
+</ul>
+
+<blockquote>本文于 2012-10-9 翻译完成，下次翻译内容：关于（about.html）</blockquote>

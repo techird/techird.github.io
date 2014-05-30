@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>棋局创造器</title>
+    <link rel="stylesheet" href="css/fateboard.css">
+    <script type="text/javascript" src="js/tangram.js"></script>
+    <script type="text/javascript" src="js/fateboard.js"></script>
+    <script type="text/javascript" src="js/create.js"></script>
+</head>
+<body>
+	<div id="intro">
+        <p>太扯淡（T = Techird）和余小鱼（S = Sue）决定去更多的地方探险，你有什么好注意呢？注意：</p>
+        <ul>
+            <li>Techird 和 Sue 只有一个</li>
+            <li>程序不验证地图的有效性</li>
+        </ul>
+    </div>
+    <div id="board"></div>
+    <div id="ctrl">
+    	<h1>Fateboard</h1>
+        <div class="setting-section">
+            <h2>地图制作</h2>
+            <label for="map-size-x">地图宽度</label>
+            <input id="map-size-x" type="number" value="5" />
+            <label for="map-data">地图高度</label>
+            <input id="map-size-y" type="number" value="5" />
+            <button id="btn-start">开始制作</button>
+        </div>
+        <div class="setting-section">
+        	<h2>地图数据</h2>
+        	<textarea id="map-data" rows="10"></textarea>
+        </div>
+    </div>
+</body>
+</html>

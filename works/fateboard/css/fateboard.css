@@ -1,0 +1,213 @@
+body{
+    background-color: white;
+    padding-right: 320px;
+    font-family: 'Tahoma', 'Microsoft Yahei' !important;
+}
+#board {
+    margin: 50px auto 0;
+}
+#board:focus {
+    box-shadow: 0 0 10px #666;
+}
+p.love {
+    color: #FF738B;
+}
+#info {
+    width: 200px;
+    margin: 20px auto;
+}
+
+#ctrl {
+    position: fixed;
+    right: 0;
+    top: 0px;
+    bottom: 0px;
+    width: 300px;
+    padding: 10px 10px;
+    background-color: #bfbfbf;
+    color: #666;
+    box-shadow: 0 0 20px #777, -1px 0 #CCC;
+    border-left: 1px solid #CCC;
+    overflow-y: scroll;
+}
+#ctrl h1 {
+    margin: 0;
+    color: white;
+    font-size: 24px;
+    height: 40px;
+    color: white;
+    text-align: right;
+    border-bottom: solid 1px #999;
+    box-shadow: 0 1px #CCC
+}
+div.author {
+    margin: 20px 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: right;
+}
+div.author a {
+    color: #666;
+}
+.setting-section{
+    padding: 5px;
+}
+.setting-section h2{
+    font-weight: normal;
+    font-size: 18px;
+    text-shadow: 0 1px #DDD;
+}
+.setting-section label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+.setting-section select, .setting-section textarea {
+    margin: 0;
+    outline: none;
+    font-family: 'Arial', 'Microsoft Yahei';
+}
+.setting-section select {
+    width: 273px;
+    height: 24px;
+    line-height: 24px;
+}
+.setting-section input[type=number] {
+    width: 268px;
+    height: 24px;
+    line-height: 20px;
+    padding-left: 5px;
+}
+.setting-section textarea {
+    width: 265px;
+    padding: 3px;
+    resize: vertical;
+}
+.setting-section button {
+    margin: 10px 10px 0 0;
+    padding: 5px 10px;
+}
+.setting-section a {
+    font-size: 13px;
+    color: black;
+}
+.setting-section a:active {
+    color: red;
+}
+.actions {
+    margin-top: 10px;
+    border-top: 1px solid #999;
+    box-shadow: inset 0 1px #CFCFCF;
+    padding: 5px;
+    text-align: center;
+}
+.actions button {
+    padding: 8px 15px;
+    margin: 0 10px;
+    font-family: 'Arial', 'Microsoft Yahei';
+}
+.board-table {    
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.board-cell {
+    cursor: pointer;
+    z-index: 0;
+    width: 40px;
+    height: 40px;
+    background: url(../img/map.png);
+    padding: 0;
+    border: none;
+    position: relative;
+    background-position-x: 0; 
+}
+.board-cell.top{
+    background-position-x: -80px;
+}
+.board-cell.left{
+    background-position-x: -160px;
+}
+.board-cell.right{
+    background-position-x: -200px;
+}
+.board-cell.bottom{
+    background-position-x: -280px;
+}
+.board-cell.right.bottom{
+    background-position-x: -320px;
+}
+.board-cell.left.bottom{
+    background-position-x: -240px;
+}
+.board-cell.left.top{
+    background-position-x: -40px;
+}
+.board-cell.right.top{
+    background-position-x: -120px;
+}
+.board-cell.left.right{
+    background-position-x: -360px;
+}
+.board-cell.top.bottom{
+    background-position-x: -400px;
+}
+.board-cell.cell-type-0{
+    background-position-y: -80px;
+}
+.board-cell.cell-type-1{
+    background-position-y: -280px;
+}
+.board-cell.cell-type-1.active{
+    background-position-y: 0;
+}
+.board-cell.cell-type-2{
+    background-position-y: -320px;
+}
+.board-cell.cell-type-2.active{
+    background-position-y: -40px;
+}
+.board-cell.cell-type-3{
+    background-position-y: -120px;
+}
+.board-cell.cell-type-4{
+    background-position-y: -160px;
+}
+.board-cell.cell-type-5{
+    background-position-y: -200px;
+}
+.board-cell.cell-type-6{
+    background-position-y: -240px;
+}
+.board-cell.cell-type-7{
+    background-position-y: -360px;
+}
+.board-cell:hover {
+    background-color: #EEE;
+    -webkit-transition: all ease 0;
+    -moz-transition: all ease 0;
+    -ms-transition: all ease 0;
+    transition: all ease 0;
+    z-index: 100;
+    outline: 1px dashed red;
+}
+.board-cell:active {            
+    -webkit-transition: all ease-in .05s;
+    -moz-transition: all ease-in .05s;
+    -ms-transition: all ease-in .05s;
+    transition: all ease-in .05s;
+    background-color: #A557FA;
+}
+.board-cell div.step-value {    
+    font-family: 'Consolas';
+    text-align: center;
+    text-shadow: 0 1px white;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    overflow: visible;
+    font-size: 9px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
