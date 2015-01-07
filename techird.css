@@ -45,10 +45,10 @@ div {
 	bottom: 0;
 	right: 0;
 	opacity: 0;
-	-webkit-transform: translate3d(0, -70%, 0);
-	-moz-transform: translate3d(0, -70%, 0);
-	-ms-transform: translate3d(0, -70%, 0);
-	-transform: translate3d(0, -70%, 0);
+	-webkit-transform: translate3d(0, -100%, 0);
+	-moz-transform: translate3d(0, -100%, 0);
+	-ms-transform: translate3d(0, -100%, 0);
+	-transform: translate3d(0, -100%, 0);
 	-webkit-transition: -webkit-transform .1s ease, opacity .3s ease;
 	-moz-transition: -moz-transform .1s ease, opacity .3s ease;
 	-ms-transition: -ms-transform .1s ease, opacity .3s ease;
