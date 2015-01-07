@@ -13,10 +13,12 @@ div {
 	margin: 150px auto;
 }
 
-img {
+#logo {
 	float: left;
 	/*box-shadow: -3px -3px 5px #333;*/
 	position: relative;
+	width: 256px;
+	height: 256px;
 
 	transform: perspective(600px) rotateY(30deg);
 	-webkit-transform: perspective(600px) rotateY(30deg);
@@ -31,7 +33,7 @@ img {
 	-webkit-box-reflect: below 10px -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,.0)), color-stop(.6, rgba(255,255,255,.0)),  to(rgba(255,255,255,.4)));
 	-ms-box-relect: below 10px -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,.0)), color-stop(.6, rgba(255,255,255,.0)),  to(rgba(255,255,255,.4)));
 }
-img:after {
+#logo:after {
 	content: ' ';
 	display: block;
 	position: absolute;
@@ -50,13 +52,13 @@ img:after {
 	-ms-transition: -ms-transform .3s ease, opacity .3s ease;
 	transition: transform .3s ease, opacity .3s ease;
 }
-img:hover {
+#logo:hover {
 	transform: perspective(600px) rotateY(0);
 	-webkit-transform: perspective(600px) rotateY(0);
 	-moz-transform: perspective(600px) rotateY(0);
 	-ms-transform: perspective(600px) rotateY(0);
 }
-img:hover:after {
+#logo:hover:after {
 	opacity: 1;
 	-webkit-transform: translate3d(0, 0, 0);
 	-moz-transform: translate3d(0, 0, 0);
