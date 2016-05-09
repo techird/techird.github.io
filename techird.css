@@ -50,8 +50,8 @@ h1 {
 }
 
 p {
-	margin-left: 280px;
-	margin-right: 10px;
+	width: 850px;
+	margin: 100px auto;
 	color: #999;
 	text-align: right;
 	text-shadow: 1px 1px 0 #;
